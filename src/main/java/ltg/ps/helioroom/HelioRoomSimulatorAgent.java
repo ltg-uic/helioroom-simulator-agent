@@ -89,12 +89,12 @@ public class HelioRoomSimulatorAgent {
 		String anchor;
 		if (Math.random()<0.5) {
 			event = "new_observation";
-			color = colors[(int) (Math.random()*9)];
-			anchor = colors[(int) (Math.random()*9)];
+			color = colors[(int) (Math.random()*colors.length)];
+			anchor = colors[(int) (Math.random()*colors.length)];
 		} else {
 			event = "new_theory";
-			color = colors[(int) (Math.random()*9)];
-			anchor = planets[(int) (Math.random()*9)];
+			color = colors[(int) (Math.random()*colors.length)];
+			anchor = planets[(int) (Math.random()*planets.length)];
 		}
 		String reason = generateString((int) (Math.random()*100));
 		ObjectNode payload =  JsonNodeFactory.instance.objectNode();
@@ -112,12 +112,12 @@ public class HelioRoomSimulatorAgent {
 		String anchor;
 		if (Math.random()<0.5) {
 			event = "remove_observation";
-			color = colors[(int) (Math.random()*9)];
-			anchor = colors[(int) (Math.random()*9)];
+			color = colors[(int) (Math.random()*colors.length)];
+			anchor = colors[(int) (Math.random()*colors.length)];
 		} else {
 			event = "remove_theory";
-			color = colors[(int) (Math.random()*9)];
-			anchor = planets[(int) (Math.random()*9)];
+			color = colors[(int) (Math.random()*colors.length)];
+			anchor = planets[(int) (Math.random()*planets.length)];
 		}
 		String reason = generateString((int) (Math.random()*100));
 		ObjectNode payload =  JsonNodeFactory.instance.objectNode();
@@ -135,12 +135,12 @@ public class HelioRoomSimulatorAgent {
 		String anchor;
 		if (Math.random()<0.5) {
 			event = "update_observation";
-			color = colors[(int) (Math.random()*9)];
-			anchor = colors[(int) (Math.random()*9)];
+			color = colors[(int) (Math.random()*colors.length)];
+			anchor = colors[(int) (Math.random()*colors.length)];
 		} else {
 			event = "update_theory";
-			color = colors[(int) (Math.random()*9)];
-			anchor = planets[(int) (Math.random()*9)];
+			color = colors[(int) (Math.random()*colors.length)];
+			anchor = planets[(int) (Math.random()*planets.length)];
 		}
 		String reason = generateString((int) (Math.random()*100));
 		ObjectNode payload =  JsonNodeFactory.instance.objectNode();
