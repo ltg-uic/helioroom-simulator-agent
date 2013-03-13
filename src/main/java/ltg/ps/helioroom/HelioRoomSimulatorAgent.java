@@ -17,8 +17,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
  */
 public class HelioRoomSimulatorAgent {
 
-	public static String[] colors = {"red", "blue", "brown", "pink", "gray", "green", "yellow", "orange", "purple"};
-	public static String[] planets = {"mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"};
+	public static String[] colors = {"red", "blue", "brown", "pink", "gray", "green", "yellow", "orange"};
+	public static String[] planets = {"mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune"};
 	public static String[] events = {"insert", "update", "remove"};
 
 	private LTGEventHandler eh = null;
@@ -175,9 +175,9 @@ public class HelioRoomSimulatorAgent {
 	 */
 	public static void main(String[] args) {
 		// String[] events = {"insert", "update", "remove"};
-		String[] events = {"insert", "remove"};
+		String[] events = {"insert"};
+		new HelioRoomSimulatorAgent("biden", "android-test", events, 500);
 		//new HelioRoomSimulatorAgent("hr-simulator", "helio-sp-13", events, 1000);
-		new HelioRoomSimulatorAgent("hr-simulator", "helio-sp-13", events, 1000);
 	}
 
 }
