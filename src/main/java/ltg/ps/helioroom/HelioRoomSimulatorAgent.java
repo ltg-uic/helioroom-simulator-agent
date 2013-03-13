@@ -19,12 +19,12 @@ public class HelioRoomSimulatorAgent {
 
 	public static String[] colors = {"red", "blue", "brown", "pink", "gray", "green", "yellow", "orange", "purple"};
 	public static String[] planets = {"mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"};
+	public static String[] events = {"insert", "update", "remove"};
 
 	private LTGEventHandler eh = null;
-	private int sleep = 24*1000/24;
 
 
-	public HelioRoomSimulatorAgent(String usernameAndPass, String chatAndDBId) { 
+	public HelioRoomSimulatorAgent(String usernameAndPass, String chatAndDBId, String[] r_events, int sleep) {
 
 		// -------------------
 		// Init network and DB
@@ -43,7 +43,7 @@ public class HelioRoomSimulatorAgent {
 		// Now we can simulate the main thread  and make ourselves busy
 		while(true) {
 			try {
-				generateRandomEvent();
+				generateRandomEvent(r_events);
 				Thread.sleep(sleep);
 			} catch (InterruptedException e) {
 				eh.close();
@@ -52,13 +52,32 @@ public class HelioRoomSimulatorAgent {
 	}
 
 
-	private void generateRandomEvent() {
+	private void generateRandomEvent(String[] r_events) {
+		if (r_events.length==events.length)
+			simulateTraffic();
+		else
+			chooseAmongAvailable(r_events);
+	}
+
+
+	private void simulateTraffic() {
 		double r = Math.random();
 		if (r<0.5)
 			generateUpdateEvent();
 		else if (r <0.75) 
 			generateCreateEvent();
 		else 
+			generateDeleteEvent();
+	}
+	
+	
+	private void chooseAmongAvailable(String[] r_events) {
+		String e = r_events[new Random().nextInt(r_events.length)];
+		if (e.equals("insert"))
+			generateCreateEvent();
+		if (e.equals("update"))
+			generateUpdateEvent();
+		if (e.equals("remove"))
 			generateDeleteEvent();
 	}
 
@@ -96,7 +115,7 @@ public class HelioRoomSimulatorAgent {
 			color = colors[(int) (Math.random()*9)];
 			anchor = colors[(int) (Math.random()*9)];
 		} else {
-			event = "delete_theory";
+			event = "remove_theory";
 			color = colors[(int) (Math.random()*9)];
 			anchor = planets[(int) (Math.random()*9)];
 		}
@@ -132,14 +151,6 @@ public class HelioRoomSimulatorAgent {
 	}
 
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		new HelioRoomSimulatorAgent(args[0], args[1]);
-	}
-
-
 	private String generateString(int length) {
 		String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		Random rng = new Random(System.nanoTime());
@@ -156,6 +167,17 @@ public class HelioRoomSimulatorAgent {
 				"user-9", "user-10", "user-11", "user-12", "user-13", "user-14", "user-15", "user-16", 
 				"user-17", "user-18", "user-19", "user-20", "user-21", "user-22", "user-23", "user-24"};
 		return usernames[(int) (Math.random()*usernames.length)];
+	}
+	
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// String[] events = {"insert", "update", "remove"};
+		String[] events = {"insert", "remove"};
+		//new HelioRoomSimulatorAgent("hr-simulator", "helio-sp-13", events, 1000);
+		new HelioRoomSimulatorAgent("hr-simulator", "helio-sp-13", events, 1000);
 	}
 
 }
