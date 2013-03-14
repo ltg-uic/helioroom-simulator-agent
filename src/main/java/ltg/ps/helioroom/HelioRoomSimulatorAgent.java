@@ -187,8 +187,8 @@ public class HelioRoomSimulatorAgent {
 	 */
 	public static void main(String[] args) {
 		String[] events = {"insert", "remove"};
-		//String[] events = {"insert"};
-		//new HelioRoomSimulatorAgent("biden", "android-test", events, 500);
+		//The last parameter is the stable point. Meaning how many notes (observations and theories)
+		// must be generated before the first remove event is generatd
 		new HelioRoomSimulatorAgent("hr-simulator", "helio-sp-13", events, 1000, 5*2);
 	}
 
