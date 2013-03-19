@@ -141,7 +141,7 @@ public class HelioRoomSimulatorAgent {
 		Random r = new Random();
 		LTGEvent re = generated_events.remove(r.nextInt(generated_events.size()));
 		String event;
-		if (Math.random()<0.5) {
+		if (re.getType().equals("new_observation")) {
 			event = "remove_observation";
 		} else {
 			event = "remove_theory";
@@ -154,7 +154,7 @@ public class HelioRoomSimulatorAgent {
 		Random r = new Random();
 		LTGEvent re = generated_events.remove(r.nextInt(generated_events.size()));
 		String event;
-		if (Math.random()<0.5) {
+		if (re.getType().equals("new_observation")) {
 			event = "update_observation";
 		} else {
 			event = "update_theory";
